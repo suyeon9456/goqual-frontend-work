@@ -1,6 +1,6 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CCol, CSpinner, CRow } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import React from 'react';
+import { CButton, CCard, CCardBody, CCardHeader, CCol, CSpinner, CRow } from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Spinners = () => {
   return (
@@ -115,7 +115,7 @@ const Spinners = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Spinners
+export default Spinners;

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import {
   CCard,
   CCardHeader,
@@ -11,12 +11,12 @@ import {
   CToastClose,
   CToastHeader,
   CToaster,
-} from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+} from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const ExampleToast = () => {
-  const [toast, addToast] = useState(0)
-  const toaster = useRef()
+  const [toast, addToast] = useState(0);
+  const toaster = useRef();
   const exampleToast = (
     <CToast>
       <CToastHeader closeButton>
@@ -36,7 +36,7 @@ const ExampleToast = () => {
       </CToastHeader>
       <CToastBody>Hello, world! This is a toast message.</CToastBody>
     </CToast>
-  )
+  );
   return (
     <>
       <CButton color="primary" onClick={() => addToast(exampleToast)}>
@@ -44,8 +44,8 @@ const ExampleToast = () => {
       </CButton>
       <CToaster ref={toaster} push={toast} placement="top-end" />
     </>
-  )
-}
+  );
+};
 
 const Toasts = () => {
   return (
@@ -247,7 +247,7 @@ const Toasts = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Toasts
+export default Toasts;

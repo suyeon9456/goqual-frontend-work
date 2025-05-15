@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CButton,
   CCard,
@@ -10,8 +10,8 @@ import {
   CFormLabel,
   CFormTextarea,
   CRow,
-} from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+} from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const FormControl = () => {
   return (
@@ -243,7 +243,7 @@ const FormControl = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default FormControl
+export default FormControl;

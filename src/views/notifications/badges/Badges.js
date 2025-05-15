@@ -1,6 +1,6 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CCol, CBadge, CRow } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import React from 'react';
+import { CButton, CCard, CCardBody, CCardHeader, CCol, CBadge, CRow } from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Badges = () => {
   return (
@@ -119,7 +119,7 @@ const Badges = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Badges
+export default Badges;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CCard,
   CCardBody,
@@ -10,8 +10,8 @@ import {
   CFormSelect,
   CFormTextarea,
   CRow,
-} from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+} from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const FloatingLabels = () => {
   return (
@@ -165,7 +165,7 @@ const FloatingLabels = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default FloatingLabels
+export default FloatingLabels;

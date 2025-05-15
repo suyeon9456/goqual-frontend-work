@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CCard,
   CCardBody,
@@ -7,8 +7,8 @@ import {
   CPagination,
   CPaginationItem,
   CRow,
-} from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+} from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Paginations = () => {
   return (
@@ -169,7 +169,7 @@ const Paginations = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Paginations
+export default Paginations;

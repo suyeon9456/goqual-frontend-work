@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   CButton,
   CCard,
@@ -14,11 +14,11 @@ import {
   CPopover,
   CRow,
   CTooltip,
-} from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+} from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const LiveDemo = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisible(!visible)}>
@@ -37,11 +37,11 @@ const LiveDemo = () => {
         </CModalFooter>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const StaticBackdrop = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisible(!visible)}>
@@ -62,11 +62,11 @@ const StaticBackdrop = () => {
         </CModalFooter>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const ScrollingLongContent = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisible(!visible)}>
@@ -164,11 +164,11 @@ const ScrollingLongContent = () => {
         </CModalFooter>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const ScrollingLongContent2 = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisible(!visible)}>
@@ -266,11 +266,11 @@ const ScrollingLongContent2 = () => {
         </CModalFooter>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const VerticallyCentered = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisible(!visible)}>
@@ -292,11 +292,11 @@ const VerticallyCentered = () => {
         </CModalFooter>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const VerticallyCentered2 = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisible(!visible)}>
@@ -337,11 +337,11 @@ const VerticallyCentered2 = () => {
         </CModalFooter>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const TooltipsPopovers = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisible(!visible)}>
@@ -381,13 +381,13 @@ const TooltipsPopovers = () => {
         </CModalFooter>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const OptionalSizes = () => {
-  const [visibleXL, setVisibleXL] = useState(false)
-  const [visibleLg, setVisibleLg] = useState(false)
-  const [visibleSm, setVisibleSm] = useState(false)
+  const [visibleXL, setVisibleXL] = useState(false);
+  const [visibleLg, setVisibleLg] = useState(false);
+  const [visibleSm, setVisibleSm] = useState(false);
   return (
     <>
       <CButton color="primary" onClick={() => setVisibleXL(!visibleXL)}>
@@ -418,16 +418,16 @@ const OptionalSizes = () => {
         <CModalBody>...</CModalBody>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const FullscreenModal = () => {
-  const [visible, setVisible] = useState(false)
-  const [visibleSm, setVisibleSm] = useState(false)
-  const [visibleMd, setVisibleMd] = useState(false)
-  const [visibleLg, setVisibleLg] = useState(false)
-  const [visibleXL, setVisibleXL] = useState(false)
-  const [visibleXXL, setVisibleXXL] = useState(false)
+  const [visible, setVisible] = useState(false);
+  const [visibleSm, setVisibleSm] = useState(false);
+  const [visibleMd, setVisibleMd] = useState(false);
+  const [visibleLg, setVisibleLg] = useState(false);
+  const [visibleXL, setVisibleXL] = useState(false);
+  const [visibleXXL, setVisibleXXL] = useState(false);
 
   return (
     <>
@@ -486,8 +486,8 @@ const FullscreenModal = () => {
         <CModalBody>...</CModalBody>
       </CModal>
     </>
-  )
-}
+  );
+};
 
 const Modals = () => {
   return (
@@ -747,7 +747,7 @@ const Modals = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Modals
+export default Modals;

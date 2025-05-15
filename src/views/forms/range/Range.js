@@ -1,6 +1,6 @@
-import React from 'react'
-import { CCard, CCardBody, CCardHeader, CCol, CFormLabel, CFormRange, CRow } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import React from 'react';
+import { CCard, CCardBody, CCardHeader, CCol, CFormLabel, CFormRange, CRow } from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Range = () => {
   return (
@@ -77,7 +77,7 @@ const Range = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Range
+export default Range;

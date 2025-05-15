@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CAlert,
   CAlertHeading,
@@ -8,8 +8,8 @@ import {
   CCardHeader,
   CCol,
   CRow,
-} from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+} from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Alerts = () => {
   return (
@@ -130,7 +130,7 @@ const Alerts = () => {
                 color="warning"
                 dismissible
                 onClose={() => {
-                  alert('👋 Well, hi there! Thanks for dismissing me.')
+                  alert('👋 Well, hi there! Thanks for dismissing me.');
                 }}
               >
                 <strong>Go right ahead</strong> and click that dimiss over there on the right.
@@ -140,7 +140,7 @@ const Alerts = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Alerts
+export default Alerts;

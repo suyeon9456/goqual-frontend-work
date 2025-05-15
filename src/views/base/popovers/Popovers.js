@@ -1,6 +1,6 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CPopover, CRow, CCol } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import React from 'react';
+import { CButton, CCard, CCardBody, CCardHeader, CPopover, CRow, CCol } from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Popovers = () => {
   return (
@@ -66,7 +66,7 @@ const Popovers = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Popovers
+export default Popovers;

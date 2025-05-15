@@ -1,6 +1,6 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CLink, CTooltip, CRow, CCol } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import React from 'react';
+import { CButton, CCard, CCardBody, CCardHeader, CLink, CTooltip, CRow, CCol } from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Tooltips = () => {
   return (
@@ -72,7 +72,7 @@ const Tooltips = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Tooltips
+export default Tooltips;

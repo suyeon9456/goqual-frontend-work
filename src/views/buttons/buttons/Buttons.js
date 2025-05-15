@@ -1,8 +1,8 @@
-import React from 'react'
-import { CButton, CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilBell } from '@coreui/icons'
-import { DocsComponents, DocsExample } from 'src/components'
+import React from 'react';
+import { CButton, CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { cilBell } from '@coreui/icons';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Buttons = () => {
   return (
@@ -396,7 +396,7 @@ const Buttons = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Buttons
+export default Buttons;

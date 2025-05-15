@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   CButton,
   CCard,
@@ -10,10 +10,10 @@ import {
   CCol,
   CPlaceholder,
   CRow,
-} from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+} from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
-import ReactImg from 'src/assets/images/react.jpg'
+import ReactImg from 'src/assets/images/react.jpg';
 
 const Placeholders = () => {
   return (
@@ -191,7 +191,7 @@ const Placeholders = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Placeholders
+export default Placeholders;

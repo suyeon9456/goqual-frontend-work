@@ -1,6 +1,6 @@
-import React from 'react'
-import { CCard, CCardBody, CCardHeader, CCol, CProgress, CProgressBar, CRow } from '@coreui/react'
-import { DocsComponents, DocsExample } from 'src/components'
+import React from 'react';
+import { CCard, CCardBody, CCardHeader, CCol, CProgress, CProgressBar, CRow } from '@coreui/react';
+import { DocsComponents, DocsExample } from 'src/components';
 
 const Progress = () => {
   return (
@@ -181,7 +181,7 @@ const Progress = () => {
         </CCard>
       </CCol>
     </CRow>
-  )
-}
+  );
+};
 
-export default Progress
+export default Progress;
