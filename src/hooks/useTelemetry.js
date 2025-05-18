@@ -9,7 +9,6 @@ const useTelemetry = ({ deviceId }) => {
   const currentTime = Date.now();
   const tenMinutesAgo = Date.now() - 10 * 60 * 1000;
 
-  // 1분 단위 타임스탬프 배열 생성
   const minuteTimestamps = useMemo(() => {
     const timestamps = [];
     for (let time = tenMinutesAgo; time <= currentTime; time += 60 * 1000) {
@@ -24,6 +23,17 @@ const useTelemetry = ({ deviceId }) => {
     select: (data) => data?.filter((key) => TEMPERATURE_KEYS.includes(key)),
   });
 
+  const getEarliestDataForEachMinute = (data) => {
+    const minuteMap = new Map();
+    data.forEach(({ value, ts }) => {
+      const minutes = ts.getMinutes();
+      if (!minuteMap.has(minutes) || ts < minuteMap.get(minutes).ts) {
+        minuteMap.set(minutes, { value, ts });
+      }
+    });
+    return Array.from(minuteMap.values());
+  };
+
   const { data: telemetryValues } = useQuery({
     queryKey: telemetryValuesQueryKey.detail(deviceId),
     queryFn: () =>
@@ -37,11 +47,20 @@ const useTelemetry = ({ deviceId }) => {
     refetchInterval: 1 * 60 * 1000,
     select: (data) => {
       const { wh40batt, baromrelin, soilad1, rainratein } = data;
+
       return {
-        wh40batt: wh40batt.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
-        baromrelin: baromrelin.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
-        soilad1: soilad1.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
-        rainratein: rainratein.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
+        wh40batt: getEarliestDataForEachMinute(
+          wh40batt.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
+        ),
+        baromrelin: getEarliestDataForEachMinute(
+          baromrelin.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
+        ),
+        soilad1: getEarliestDataForEachMinute(
+          soilad1.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
+        ),
+        rainratein: getEarliestDataForEachMinute(
+          rainratein.map(({ value, ts }) => ({ value: Number(value), ts: new Date(ts) })),
+        ),
       };
     },
   });
