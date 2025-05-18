@@ -22,3 +22,19 @@ export const getFormattedTimeseriesValues = (data) => {
     return acc;
   }, {});
 };
+
+export const formatTime = (date) => {
+  return `${date.getHours()}:${date.getMinutes()}`;
+};
+
+export const formatRequestTime = (startDate, endDate) => {
+  return `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()} ${formatTime(startDate)} ~ ${formatTime(endDate)}`;
+};
+
+export const getMaxValue = (timeseriesValues) => {
+  if (!timeseriesValues) return 100;
+
+  return Math.max(
+    ...Object.values(timeseriesValues).map((values) => Math.max(...values.map((t) => t.value))),
+  );
+};
