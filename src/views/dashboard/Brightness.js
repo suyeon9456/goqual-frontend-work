@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import CIcon from '@coreui/icons-react';
-import { cilLightbulb } from '@coreui/icons';
+import { cilSun } from '@coreui/icons';
 import { CFormRange } from '@coreui/react';
 import useBrightness from '../../hooks/useBrightness';
 import { DEVICE_ID, BRIGHTNESS_MIN, BRIGHTNESS_MAX } from '../../lib/constant';
@@ -28,7 +28,7 @@ const BrightnessDashboard = () => {
   return (
     <div>
       <CIcon
-        icon={cilLightbulb}
+        icon={cilSun}
         customClassName="nav-icon"
         style={{
           color: getColorByBrightness,
