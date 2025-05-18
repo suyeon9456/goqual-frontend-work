@@ -4,7 +4,7 @@ import { CChartLine } from '@coreui/react-chartjs';
 import { getStyle } from '@coreui/utils';
 import useDeviceStateChart from '../../hooks/useDeviceStateChart';
 
-const MainChart = () => {
+const DeviceStateChart = () => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -27,10 +27,11 @@ const MainChart = () => {
     });
   }, [chartRef]);
 
-  const { maxValue, labels, datasets } = useDeviceStateChart();
+  const { maxValue, labels, datasets, requestTime } = useDeviceStateChart();
 
   return (
     <>
+      <div className="small text-body-secondary">{requestTime}</div>
       <CChartLine
         ref={chartRef}
         style={{ height: '300px', marginTop: '40px' }}
@@ -88,4 +89,4 @@ const MainChart = () => {
   );
 };
 
-export default MainChart;
+export default DeviceStateChart;
