@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react';
 
-import MainChart from './MainChart';
+import DeviceStateChart from './DeviceStateChart';
 import Brightness from './Brightness';
 
 const Dashboard = () => {
@@ -19,7 +19,7 @@ const Dashboard = () => {
             </CCol>
             <CCol sm={7} className="d-none d-md-block"></CCol>
           </CRow>
-          <MainChart />
+          <DeviceStateChart />
         </CCardBody>
       </CCard>
       <CRow>
