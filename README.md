@@ -1,0 +1,58 @@
+# GoQual Frontend Project
+
+### 설치 및 실행
+
+1. 의존성 설치
+
+```bash
+npm install
+# 또는
+yarn install
+```
+
+2. 개발 서버 실행
+
+```bash
+npm start
+# 또는
+yarn start
+```
+
+## 주요 기능
+
+- 기기 상태 모니터링 대시보드
+  - 실시간 기기 상태 차트 표시
+  - 기기 상태 데이터 시각화
+- 전구 제어 대시보드
+  - 밝기 제어 기능
+  - 실시간 제어 상태 표시
+
+## 기술 스택
+
+- React 19
+- CoreUI React Admin Template
+- Redux
+- React Query
+- Chart.js
+- Axios
+
+## 라이브러리 선택 이유
+
+### React Query
+
+- 서버 상태 관리 최적화
+- 캐싱 기능
+- 실시간 데이터 동기화
+
+### React Hook Form
+
+- 폼 상태 관리의 성능 최적화
+- 불필요한 리렌더링 방지
+- 유효성 검사 및 에러 핸들링이 간편
+
+## 개선하고 싶은 점
+
+1. refresh API가 있다면 refresh token으로 토큰이 만료됐을떄 refresh 할 수 있는 기능 추가
+2. 타입스크립트 적용
+   - 적용하지 않은 이유
+     - 프로젝트 기반이 되는 CoreUI React Admin Template에서 타입스크립트를 사용하고 있지 않아서 맞춰야 겠다고 생각
