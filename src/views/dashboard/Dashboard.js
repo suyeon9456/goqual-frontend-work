@@ -1,9 +1,9 @@
-import React from 'react';
-
+import React, { Suspense } from 'react';
 import { CCard, CCardBody, CCol, CRow } from '@coreui/react';
 
 import DeviceStateChart from './DeviceStateChart';
 import BrightnessControl from './BrightnessControl';
+import Skeleton from '../../components/Skeleton';
 
 const Dashboard = () => {
   return (
@@ -18,7 +18,11 @@ const Dashboard = () => {
             </CCol>
             <CCol sm={7} className="d-none d-md-block"></CCol>
           </CRow>
-          <DeviceStateChart />
+          <Suspense
+            fallback={<Skeleton level={4} style={{ height: '260px', marginTop: '40px' }} />}
+          >
+            <DeviceStateChart />
+          </Suspense>
         </CCardBody>
       </CCard>
       <CRow>
