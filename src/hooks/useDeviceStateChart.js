@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { DEVICE_ID, GRAPH_COLORS } from '../lib/constant';
 import useTimeseries from './api/useTimeseries';
+import { formatTime, formatRequestTime, getMaxValue } from '../lib/utils';
 
 const DEFAULT_DATASET = {
   borderWidth: 2,
@@ -8,53 +9,47 @@ const DEFAULT_DATASET = {
   fill: true,
 };
 
+const createDataset = (label, values, index) => ({
+  ...DEFAULT_DATASET,
+  label,
+  values,
+  borderColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
+  pointHoverBackgroundColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
+  data: values?.map((t) => t.value) ?? [],
+});
+
 const useDeviceStateChart = () => {
-  const { telemetryValues, telemetryKeys } = useTimeseries({
+  const { timeseriesValues, timeseriesKeys } = useTimeseries({
     deviceId: DEVICE_ID,
   });
 
   const minuteTimestamps = useMemo(() => {
-    if (telemetryValues == null || telemetryKeys == null) return [];
-    const firstItemValues = telemetryValues[telemetryKeys[0]];
+    if (!timeseriesValues || !timeseriesKeys?.length) return [];
+    return timeseriesValues[timeseriesKeys[0]].map((item) => item.ts.getTime());
+  }, [timeseriesKeys, timeseriesValues]);
 
-    return firstItemValues.map((item) => item.ts.getTime());
-  }, [telemetryKeys, telemetryValues]);
+  const maxValue = useMemo(() => getMaxValue(timeseriesValues), [timeseriesValues]);
 
-  const maxValue = useMemo(() => {
-    if (telemetryValues == null) return 100;
-    const maxValues = Object.values(telemetryValues).map((value) =>
-      Math.max(...value.map((t) => t.value)),
-    );
-    return Math.max(...maxValues);
-  }, [telemetryValues]);
-
-  const labels = useMemo(() => {
-    if (minuteTimestamps == null) return [];
-    return minuteTimestamps.map((label) => {
-      const date = new Date(label);
-      return date.getHours() + ':' + date.getMinutes();
-    });
-  }, [minuteTimestamps]);
+  const labels = useMemo(
+    () => minuteTimestamps.map((timestamp) => formatTime(new Date(timestamp))),
+    [minuteTimestamps],
+  );
 
   const datasets = useMemo(() => {
-    if (telemetryValues == null) return [];
-    return telemetryKeys?.map((label, index) => {
-      return {
-        ...DEFAULT_DATASET,
-        label,
-        values: telemetryValues?.[label] ?? [],
-        borderColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
-        pointHoverBackgroundColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
-        data: telemetryValues?.[label]?.map((t) => t.value) ?? [],
-      };
-    });
-  }, [telemetryValues, telemetryKeys]);
+    if (!timeseriesValues || !timeseriesKeys) return [];
+
+    return timeseriesKeys.map((label, index) =>
+      createDataset(label, timeseriesValues[label], index),
+    );
+  }, [timeseriesValues, timeseriesKeys]);
 
   const requestTime = useMemo(() => {
-    if (minuteTimestamps.length === 0) return '';
+    if (!minuteTimestamps.length) return '';
+
     const startDate = new Date(minuteTimestamps[0]);
     const endDate = new Date(minuteTimestamps[minuteTimestamps.length - 1]);
-    return `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()} ${startDate.getHours()}:${startDate.getMinutes()} ~ ${endDate.getHours()}:${endDate.getMinutes()}`;
+
+    return formatRequestTime(startDate, endDate);
   }, [minuteTimestamps]);
 
   return { maxValue, labels, datasets, requestTime };

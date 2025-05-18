@@ -8,13 +8,13 @@ const useTimeseries = ({ deviceId }) => {
   const currentTime = Date.now();
   const tenMinutesAgo = Date.now() - 10 * 60 * 1000;
 
-  const { data: telemetryKeys } = useSuspenseQuery(getTimeseriesKeyQueryOption(deviceId));
+  const { data: timeseriesKeys } = useSuspenseQuery(getTimeseriesKeyQueryOption(deviceId));
 
-  const { data: telemetryValues } = useSuspenseQuery(
-    getTimeseriesValuesQueryOption({ deviceId, telemetryKeys, tenMinutesAgo, currentTime }),
+  const { data: timeseriesValues } = useSuspenseQuery(
+    getTimeseriesValuesQueryOption({ deviceId, timeseriesKeys, tenMinutesAgo, currentTime }),
   );
 
-  return { telemetryKeys, telemetryValues };
+  return { timeseriesKeys, timeseriesValues };
 };
 
 const getTimeseriesKeyQueryOption = (deviceId) =>
@@ -25,17 +25,17 @@ const getTimeseriesKeyQueryOption = (deviceId) =>
     enabled: !!deviceId,
   });
 
-const getTimeseriesValuesQueryOption = ({ deviceId, telemetryKeys, tenMinutesAgo, currentTime }) =>
+const getTimeseriesValuesQueryOption = ({ deviceId, timeseriesKeys, tenMinutesAgo, currentTime }) =>
   queryOptions({
     queryKey: timeseriesValuesQueryKey.detail(deviceId),
     queryFn: () =>
       getTimeseriesValues({
         deviceId,
-        keys: telemetryKeys,
+        keys: timeseriesKeys,
         startTs: tenMinutesAgo,
         endTs: currentTime,
       }),
-    enabled: telemetryKeys != null && telemetryKeys.length > 0,
+    enabled: timeseriesKeys != null && timeseriesKeys.length > 0,
     refetchInterval: 1 * 60 * 1000,
     select: getFormattedTimeseriesValues,
   });
