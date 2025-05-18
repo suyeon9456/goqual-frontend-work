@@ -19,7 +19,6 @@ const useDeviceStateChart = () => {
 
     return firstItemValues.map((item) => item.ts.getTime());
   }, [telemetryKeys, telemetryValues]);
-  console.log('🚀 ~ minuteTimestamps ~ minuteTimestamps:', minuteTimestamps);
 
   const maxValue = useMemo(() => {
     if (telemetryValues == null) return 100;
