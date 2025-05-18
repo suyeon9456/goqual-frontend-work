@@ -19,6 +19,7 @@ const useDeviceStateChart = () => {
 
     return firstItemValues.map((item) => item.ts.getTime());
   }, [telemetryKeys, telemetryValues]);
+  console.log('🚀 ~ minuteTimestamps ~ minuteTimestamps:', minuteTimestamps);
 
   const maxValue = useMemo(() => {
     if (telemetryValues == null) return 100;
@@ -50,7 +51,14 @@ const useDeviceStateChart = () => {
     });
   }, [telemetryValues, telemetryKeys]);
 
-  return { maxValue, labels, datasets };
+  const requestTime = useMemo(() => {
+    if (minuteTimestamps.length === 0) return '';
+    const startDate = new Date(minuteTimestamps[0]);
+    const endDate = new Date(minuteTimestamps[minuteTimestamps.length - 1]);
+    return `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()} ${startDate.getHours()}:${startDate.getMinutes()} ~ ${endDate.getHours()}:${endDate.getMinutes()}`;
+  }, [minuteTimestamps]);
+
+  return { maxValue, labels, datasets, requestTime };
 };
 
 export default useDeviceStateChart;

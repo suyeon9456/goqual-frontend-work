@@ -27,10 +27,11 @@ const DeviceStateChart = () => {
     });
   }, [chartRef]);
 
-  const { maxValue, labels, datasets } = useDeviceStateChart();
+  const { maxValue, labels, datasets, requestTime } = useDeviceStateChart();
 
   return (
     <>
+      <div className="small text-body-secondary">{requestTime}</div>
       <CChartLine
         ref={chartRef}
         style={{ height: '300px', marginTop: '40px' }}
