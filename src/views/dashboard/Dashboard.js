@@ -4,6 +4,7 @@ import { CCard, CCardBody, CCol, CRow } from '@coreui/react';
 import DeviceStateChart from './DeviceStateChart';
 import BrightnessControl from './BrightnessControl';
 import Skeleton from '../../components/Skeleton';
+import ErrorBoundary from '../../components/ErrorBoundary';
 
 const Dashboard = () => {
   return (
@@ -21,7 +22,9 @@ const Dashboard = () => {
           <Suspense
             fallback={<Skeleton level={4} style={{ height: '260px', marginTop: '40px' }} />}
           >
-            <DeviceStateChart />
+            <ErrorBoundary>
+              <DeviceStateChart />
+            </ErrorBoundary>
           </Suspense>
         </CCardBody>
       </CCard>
@@ -36,7 +39,9 @@ const Dashboard = () => {
                   </h4>
                 </CCol>
                 <CCol sm={12}>
-                  <BrightnessControl />
+                  <ErrorBoundary>
+                    <BrightnessControl />
+                  </ErrorBoundary>
                 </CCol>
               </CRow>
             </CCardBody>
