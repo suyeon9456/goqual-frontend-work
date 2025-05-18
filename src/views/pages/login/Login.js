@@ -16,10 +16,11 @@ import {
 import CIcon from '@coreui/icons-react';
 import { cilLockLocked, cilUser } from '@coreui/icons';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../../api/hooks/useAuth';
+import useAuth from '../../../hooks/api/useAuth';
+import { CSpinner } from '@coreui/react';
 
 const Login = () => {
-  const { loginMutate, error, isError } = useAuth();
+  const { loginMutate, error, isError, isLoading } = useAuth();
   const { register, handleSubmit } = useForm();
 
   const onSubmit = useCallback((data) => {
@@ -61,7 +62,14 @@ const Login = () => {
                     {isError && <p className="text-danger">{error?.response?.data?.message}</p>}
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4" type="submit">
+                        <CButton
+                          color="primary"
+                          className="px-4 d-flex align-items-center"
+                          type="submit"
+                        >
+                          {isLoading && (
+                            <CSpinner as="span" className="me-2" size="sm" aria-hidden="true" />
+                          )}
                           Login
                         </CButton>
                       </CCol>

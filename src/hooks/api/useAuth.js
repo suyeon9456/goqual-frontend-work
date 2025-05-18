@@ -7,7 +7,7 @@ const useAuth = () => {
 
   const {
     mutateAsync: loginMutate,
-    isPending: isLoginLoading,
+    isPending: isLoading,
     error,
     isError,
   } = useMutation({
@@ -21,7 +21,7 @@ const useAuth = () => {
     },
   });
 
-  return { loginMutate, isLoginLoading, error, isError };
+  return { loginMutate, isLoading, error, isError };
 };
 
 export default useAuth;
