@@ -4,14 +4,8 @@ import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react';
 
 import MainChart from './MainChart';
 import Brightness from './Brightness';
-import useTelemetry from '../../hooks/useTelemetry';
-import { DEVICE_ID } from '../../lib/constant';
 
 const Dashboard = () => {
-  const { telemetryKeys, telemetryValues, minuteTimestamps } = useTelemetry({
-    deviceId: DEVICE_ID,
-  });
-
   return (
     <>
       <CCard className="mb-4">
@@ -25,11 +19,7 @@ const Dashboard = () => {
             </CCol>
             <CCol sm={7} className="d-none d-md-block"></CCol>
           </CRow>
-          <MainChart
-            labels={minuteTimestamps}
-            values={telemetryValues}
-            telemetryKeys={telemetryKeys}
-          />
+          <MainChart />
         </CCardBody>
       </CCard>
       <CRow>

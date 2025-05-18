@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useMemo } from 'react';
 
 import { CChartLine } from '@coreui/react-chartjs';
 import { getStyle } from '@coreui/utils';
+import useTelemetry from '../../hooks/useTelemetry';
+import { DEVICE_ID } from '../../lib/constant';
 
 const GRAPH_COLORS = [
   `rgba(${getStyle('--cui-info-rgb')})`,
@@ -10,7 +12,14 @@ const GRAPH_COLORS = [
   `rgba(${getStyle('--cui-warning-rgb')})`,
 ];
 
-const MainChart = ({ labels, values, telemetryKeys }) => {
+const MainChart = () => {
+  const {
+    telemetryKeys,
+    telemetryValues: values,
+    minuteTimestamps: labels,
+  } = useTelemetry({
+    deviceId: DEVICE_ID,
+  });
   const chartRef = useRef(null);
 
   useEffect(() => {
