@@ -1,6 +1,6 @@
 # GoQual Frontend Project
 
-### 설치 및 실행
+## 설치 및 실행
 
 1. 의존성 설치
 
