@@ -14,6 +14,22 @@ npm install
 npm start
 ```
 
+## 주요 디렉토리 구조
+
+```
+src/
+├── apis/          # API 통신 관련 코드
+├── hooks/         # 커스텀 React Hooks
+│   └── api/       # API 통신 관련 hooks
+├── layout/        # 레이아웃 관련 컴포넌트
+├── lib/           # 유틸리티 함수
+│   ├── axios.js           # Axios 인스턴스 설정
+│   ├── constant.js        # 상수 정의
+│   ├── queryKeyFactory.js # React Query 키 팩토리
+│   └── utils.js           # 공통 유틸리티 함수
+└── views/         # 페이지 컴포넌트
+```
+
 ## 주요 기능
 
 - 기기 상태 모니터링 대시보드
