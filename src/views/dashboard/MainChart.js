@@ -56,6 +56,7 @@ const MainChart = ({ labels, values, telemetryKeys }) => {
         values: values?.[label] ?? [],
         borderWidth: 2,
         borderColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
+        backgroundColor: 'transparent',
         pointHoverBackgroundColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
         data: values?.[label]?.map((t) => t.value) ?? [],
         fill: true,
