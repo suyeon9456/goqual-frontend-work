@@ -15,3 +15,10 @@ export const getTelemetryValues = async ({ deviceId, keys, startTs, endTs }) => 
   });
   return response.data;
 };
+
+export const setDeviceBrightness = async ({ deviceId, brightnessValue }) => {
+  const response = await axios.post(`/plugins/telemetry/DEVICE/${deviceId}/SERVER_SCOPE`, {
+    brightness: brightnessValue,
+  });
+  return response.data;
+};
