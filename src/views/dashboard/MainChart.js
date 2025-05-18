@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useMemo } from 'react';
 
 import { CChartLine } from '@coreui/react-chartjs';
 import { getStyle } from '@coreui/utils';
-import useTelemetry from '../../hooks/useTelemetry';
+import useTimeseries from '../../hooks/useTimeseries';
 import { DEVICE_ID } from '../../lib/constant';
 
 const GRAPH_COLORS = [
@@ -17,7 +17,7 @@ const MainChart = () => {
     telemetryKeys,
     telemetryValues: values,
     minuteTimestamps: labels,
-  } = useTelemetry({
+  } = useTimeseries({
     deviceId: DEVICE_ID,
   });
   const chartRef = useRef(null);

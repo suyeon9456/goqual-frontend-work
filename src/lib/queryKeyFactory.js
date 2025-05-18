@@ -3,5 +3,5 @@ export const createQueryKeyFactory = (base) => ({
   detail: (deviceId) => [base, deviceId],
 });
 
-export const telemetryKeysQueryKey = createQueryKeyFactory('telemetry keys');
-export const telemetryValuesQueryKey = createQueryKeyFactory('telemetry values');
+export const timeseriesQueryKey = createQueryKeyFactory('timeseries keys');
+export const timeseriesValuesQueryKey = createQueryKeyFactory('timeseries values');
