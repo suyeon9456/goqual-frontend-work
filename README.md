@@ -27,11 +27,8 @@ yarn start
   - 밝기 제어 기능
   - 실시간 제어 상태 표시
 
-## 기술 스택
+## 추가 설치한 기술 스택
 
-- React 19
-- CoreUI React Admin Template
-- Redux
 - React Query
 - Chart.js
 - Axios
@@ -49,6 +46,12 @@ yarn start
 - 폼 상태 관리의 성능 최적화
 - 불필요한 리렌더링 방지
 - 유효성 검사 및 에러 핸들링이 간편
+
+### Axios
+
+- 인터셉터를 통한 요청/응답 처리 용이
+- 요청 취소 기능 지원
+- 자동 JSON 변환
 
 ## 개선하고 싶은 점
 
