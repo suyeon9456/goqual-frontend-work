@@ -4,13 +4,7 @@ import { CChartLine } from '@coreui/react-chartjs';
 import { getStyle } from '@coreui/utils';
 import useTimeseries from '../../hooks/useTimeseries';
 import { DEVICE_ID } from '../../lib/constant';
-
-const GRAPH_COLORS = [
-  `rgba(${getStyle('--cui-info-rgb')})`,
-  `rgba(${getStyle('--cui-success-rgb')})`,
-  `rgba(${getStyle('--cui-danger-rgb')})`,
-  `rgba(${getStyle('--cui-warning-rgb')})`,
-];
+import { GRAPH_COLORS } from '../../lib/constant';
 
 const MainChart = () => {
   const {
