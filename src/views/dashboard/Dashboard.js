@@ -5,8 +5,7 @@ import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react';
 import MainChart from './MainChart';
 import Brightness from './Brightness';
 import useTelemetry from '../../hooks/useTelemetry';
-
-const DEVICE_ID = 'e6d8ace0-1b87-11f0-b556-e7ea660b8ad9';
+import { DEVICE_ID } from '../../lib/constant';
 
 const Dashboard = () => {
   const { telemetryKeys, telemetryValues, minuteTimestamps } = useTelemetry({
