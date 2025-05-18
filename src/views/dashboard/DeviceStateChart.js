@@ -4,7 +4,7 @@ import { CChartLine } from '@coreui/react-chartjs';
 import { getStyle } from '@coreui/utils';
 import useDeviceStateChart from '../../hooks/useDeviceStateChart';
 
-const MainChart = () => {
+const DeviceStateChart = () => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -88,4 +88,4 @@ const MainChart = () => {
   );
 };
 
-export default MainChart;
+export default DeviceStateChart;
