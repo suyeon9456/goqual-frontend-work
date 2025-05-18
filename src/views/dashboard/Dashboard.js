@@ -34,12 +34,12 @@ const Dashboard = () => {
         </CCardBody>
       </CCard>
       <CRow>
-        <CCol xs>
+        <CCol sm={12}>
           <CCard className="mb-4">
             <CCardHeader>전구 제어 대시보드</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol sm={5}>
+                <CCol sm={12}>
                   <Brightness />
                 </CCol>
               </CRow>

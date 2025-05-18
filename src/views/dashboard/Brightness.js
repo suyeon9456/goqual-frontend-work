@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback } from 'react';
 import CIcon from '@coreui/icons-react';
-import { cilLightbulb } from '@coreui/icons';
+import { cilSun } from '@coreui/icons';
 import { CFormRange } from '@coreui/react';
 import useBrightness from '../../hooks/useBrightness';
 import { DEVICE_ID, BRIGHTNESS_MIN, BRIGHTNESS_MAX } from '../../lib/constant';
@@ -21,28 +21,30 @@ const BrightnessDashboard = () => {
   const getColorByBrightness = useMemo(() => {
     const hue = 60;
     const saturation = 100;
-    const lightness = brightnessPercentage;
+    const lightness = Math.min(brightnessPercentage, 90);
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }, [brightnessPercentage]);
 
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center">
       <CIcon
-        icon={cilLightbulb}
-        customClassName="nav-icon"
+        icon={cilSun}
+        customClassName="brightness-icon"
         style={{
           color: getColorByBrightness,
           transition: 'color 0.3s ease',
         }}
       />
-      <CFormRange
-        min={BRIGHTNESS_MIN}
-        max={BRIGHTNESS_MAX}
-        label="밝기"
-        value={brightness}
-        onChange={onChangeBrightness}
-      />
-      <p>{brightness}%</p>
+      <div className="d-flex flex-column align-items-start w-100">
+        <CFormRange
+          min={BRIGHTNESS_MIN}
+          max={BRIGHTNESS_MAX}
+          label="밝기"
+          value={brightness}
+          onChange={onChangeBrightness}
+        />
+        <p className="text-left">{brightness}%</p>
+      </div>
     </div>
   );
 };
