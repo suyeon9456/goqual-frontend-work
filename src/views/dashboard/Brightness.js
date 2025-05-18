@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from 'react';
 import CIcon from '@coreui/icons-react';
 import { cilSun } from '@coreui/icons';
 import { CFormRange } from '@coreui/react';
-import useBrightness from '../../hooks/useBrightness';
+import useBrightness from '../../hooks/api/useBrightness';
 import { DEVICE_ID, BRIGHTNESS_MIN, BRIGHTNESS_MAX } from '../../lib/constant';
 
 const BrightnessDashboard = () => {

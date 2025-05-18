@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import useTimeseries from './useTimeseries';
 import { DEVICE_ID, GRAPH_COLORS } from '../lib/constant';
+import useTimeseries from './api/useTimeseries';
 
 const DEFAULT_DATASET = {
   borderWidth: 2,

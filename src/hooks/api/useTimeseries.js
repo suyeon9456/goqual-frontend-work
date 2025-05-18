@@ -1,9 +1,9 @@
-import { getTimeseriesKeys, getTimeseriesValues } from '../apis/telemetry';
-import { queryOptions, useQuery } from '@tanstack/react-query';
-import { timeseriesQueryKey, timeseriesValuesQueryKey } from '../lib/queryKeyFactory';
 import { useMemo } from 'react';
-import { TEMPERATURE_KEYS } from '../lib/constant';
-import { getFormattedTimeseriesValues } from '../lib/utils';
+import { getTimeseriesKeys, getTimeseriesValues } from '../../apis/telemetry';
+import { queryOptions, useQuery } from '@tanstack/react-query';
+import { timeseriesQueryKey, timeseriesValuesQueryKey } from '../../lib/queryKeyFactory';
+import { TEMPERATURE_KEYS } from '../../lib/constant';
+import { getFormattedTimeseriesValues } from '../../lib/utils';
 
 const useTimeseries = ({ deviceId }) => {
   const currentTime = Date.now();
