@@ -21,28 +21,30 @@ const BrightnessDashboard = () => {
   const getColorByBrightness = useMemo(() => {
     const hue = 60;
     const saturation = 100;
-    const lightness = brightnessPercentage;
+    const lightness = Math.min(brightnessPercentage, 90);
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   }, [brightnessPercentage]);
 
   return (
-    <div>
+    <div className="d-flex flex-column align-items-center">
       <CIcon
         icon={cilSun}
-        customClassName="nav-icon"
+        customClassName="brightness-icon"
         style={{
           color: getColorByBrightness,
           transition: 'color 0.3s ease',
         }}
       />
-      <CFormRange
-        min={BRIGHTNESS_MIN}
-        max={BRIGHTNESS_MAX}
-        label="밝기"
-        value={brightness}
-        onChange={onChangeBrightness}
-      />
-      <p>{brightness}%</p>
+      <div className="d-flex flex-column align-items-start w-100">
+        <CFormRange
+          min={BRIGHTNESS_MIN}
+          max={BRIGHTNESS_MAX}
+          label="밝기"
+          value={brightness}
+          onChange={onChangeBrightness}
+        />
+        <p className="text-left">{brightness}%</p>
+      </div>
     </div>
   );
 };
