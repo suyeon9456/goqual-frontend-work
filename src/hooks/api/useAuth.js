@@ -18,6 +18,7 @@ const useAuth = () => {
     },
     onError: (error) => {
       console.error(error);
+      localStorage.removeItem('token');
     },
   });
 
