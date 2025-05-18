@@ -3,7 +3,7 @@ import React from 'react';
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react';
 
 import DeviceStateChart from './DeviceStateChart';
-import Brightness from './Brightness';
+import BrightnessControl from './BrightnessControl';
 
 const Dashboard = () => {
   return (
@@ -29,7 +29,7 @@ const Dashboard = () => {
             <CCardBody>
               <CRow>
                 <CCol sm={12}>
-                  <Brightness />
+                  <BrightnessControl />
                 </CCol>
               </CRow>
             </CCardBody>
