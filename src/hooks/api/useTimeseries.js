@@ -1,5 +1,5 @@
 import { getTimeseriesKeys, getTimeseriesValues } from '../../apis/telemetry';
-import { queryOptions, useQuery } from '@tanstack/react-query';
+import { queryOptions, useSuspenseQuery } from '@tanstack/react-query';
 import { timeseriesQueryKey, timeseriesValuesQueryKey } from '../../lib/queryKeyFactory';
 import { TEMPERATURE_KEYS } from '../../lib/constant';
 import { getFormattedTimeseriesValues } from '../../lib/utils';
@@ -8,9 +8,9 @@ const useTimeseries = ({ deviceId }) => {
   const currentTime = Date.now();
   const tenMinutesAgo = Date.now() - 10 * 60 * 1000;
 
-  const { data: telemetryKeys } = useQuery(getTimeseriesKeyQueryOption(deviceId));
+  const { data: telemetryKeys } = useSuspenseQuery(getTimeseriesKeyQueryOption(deviceId));
 
-  const { data: telemetryValues } = useQuery(
+  const { data: telemetryValues } = useSuspenseQuery(
     getTimeseriesValuesQueryOption({ deviceId, telemetryKeys, tenMinutesAgo, currentTime }),
   );
 
@@ -22,6 +22,7 @@ const getTimeseriesKeyQueryOption = (deviceId) =>
     queryKey: timeseriesQueryKey.detail(deviceId),
     queryFn: () => getTimeseriesKeys(deviceId),
     select: (data) => data?.filter((key) => TEMPERATURE_KEYS.includes(key)),
+    enabled: !!deviceId,
   });
 
 const getTimeseriesValuesQueryOption = ({ deviceId, telemetryKeys, tenMinutesAgo, currentTime }) =>
