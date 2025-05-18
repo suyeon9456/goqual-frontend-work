@@ -9,9 +9,16 @@ const DEFAULT_DATASET = {
 };
 
 const useDeviceStateChart = () => {
-  const { telemetryValues, telemetryKeys, minuteTimestamps } = useTimeseries({
+  const { telemetryValues, telemetryKeys } = useTimeseries({
     deviceId: DEVICE_ID,
   });
+
+  const minuteTimestamps = useMemo(() => {
+    if (telemetryValues == null || telemetryKeys == null) return [];
+    const firstItemValues = telemetryValues[telemetryKeys[0]];
+
+    return firstItemValues.map((item) => item.ts.getTime());
+  }, [telemetryKeys, telemetryValues]);
 
   const maxValue = useMemo(() => {
     if (telemetryValues == null) return 100;

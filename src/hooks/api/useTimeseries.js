@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { getTimeseriesKeys, getTimeseriesValues } from '../../apis/telemetry';
 import { queryOptions, useQuery } from '@tanstack/react-query';
 import { timeseriesQueryKey, timeseriesValuesQueryKey } from '../../lib/queryKeyFactory';
@@ -9,21 +8,13 @@ const useTimeseries = ({ deviceId }) => {
   const currentTime = Date.now();
   const tenMinutesAgo = Date.now() - 10 * 60 * 1000;
 
-  const minuteTimestamps = useMemo(() => {
-    const timestamps = [];
-    for (let time = tenMinutesAgo; time <= currentTime; time += 60 * 1000) {
-      timestamps.push(time);
-    }
-    return timestamps;
-  }, [currentTime, tenMinutesAgo]);
-
   const { data: telemetryKeys } = useQuery(getTimeseriesKeyQueryOption(deviceId));
 
   const { data: telemetryValues } = useQuery(
     getTimeseriesValuesQueryOption({ deviceId, telemetryKeys, tenMinutesAgo, currentTime }),
   );
 
-  return { telemetryKeys, telemetryValues, minuteTimestamps };
+  return { telemetryKeys, telemetryValues };
 };
 
 const getTimeseriesKeyQueryOption = (deviceId) =>
