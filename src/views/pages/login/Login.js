@@ -16,7 +16,7 @@ import {
 import CIcon from '@coreui/icons-react';
 import { cilLockLocked, cilUser } from '@coreui/icons';
 import { useForm } from 'react-hook-form';
-import useAuth from '../../../hooks/useAuth';
+import useAuth from '../../../api/hooks/useAuth';
 
 const Login = () => {
   const { loginMutate, error, isError } = useAuth();

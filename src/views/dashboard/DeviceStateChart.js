@@ -1,16 +1,10 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { CChartLine } from '@coreui/react-chartjs';
 import { getStyle } from '@coreui/utils';
+import useDeviceStateChart from '../../hooks/useDeviceStateChart';
 
-const GRAPH_COLORS = [
-  `rgba(${getStyle('--cui-info-rgb')})`,
-  `rgba(${getStyle('--cui-success-rgb')})`,
-  `rgba(${getStyle('--cui-danger-rgb')})`,
-  `rgba(${getStyle('--cui-warning-rgb')})`,
-];
-
-const MainChart = ({ labels, values, telemetryKeys }) => {
+const MainChart = () => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -33,36 +27,7 @@ const MainChart = ({ labels, values, telemetryKeys }) => {
     });
   }, [chartRef]);
 
-  const max = useMemo(() => {
-    if (values == null) return 100;
-    const maxValues = Object.values(values).map((value) => Math.max(...value.map((t) => t.value)));
-    return Math.max(...maxValues);
-  }, [values]);
-
-  const labelsTest = useMemo(() => {
-    if (labels == null) return [];
-    return labels?.map((label) => {
-      const date = new Date(label);
-      return date.getHours() + ':' + date.getMinutes();
-    });
-    return [];
-  }, [labels]);
-
-  const datasets = useMemo(() => {
-    if (values == null) return [];
-    return telemetryKeys?.map((label, index) => {
-      return {
-        label,
-        values: values?.[label] ?? [],
-        borderWidth: 2,
-        borderColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
-        backgroundColor: 'transparent',
-        pointHoverBackgroundColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
-        data: values?.[label]?.map((t) => t.value) ?? [],
-        fill: true,
-      };
-    });
-  }, [values, telemetryKeys]);
+  const { maxValue, labels, datasets } = useDeviceStateChart();
 
   return (
     <>
@@ -70,7 +35,7 @@ const MainChart = ({ labels, values, telemetryKeys }) => {
         ref={chartRef}
         style={{ height: '300px', marginTop: '40px' }}
         data={{
-          labels: labelsTest ?? [],
+          labels: labels ?? [],
           datasets: datasets ?? [],
         }}
         options={{
@@ -98,11 +63,11 @@ const MainChart = ({ labels, values, telemetryKeys }) => {
               grid: {
                 color: getStyle('--cui-border-color-translucent'),
               },
-              max,
+              max: maxValue,
               ticks: {
                 color: getStyle('--cui-body-color'),
                 maxTicksLimit: 4,
-                stepSize: Math.ceil(max / 4),
+                stepSize: Math.ceil(maxValue / 4),
               },
             },
           },
