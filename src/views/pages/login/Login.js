@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
   CButton,
@@ -15,8 +15,17 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilLockLocked, cilUser } from '@coreui/icons';
+import { useForm } from 'react-hook-form';
+import useAuth from '../../../hooks/useAuth';
 
 const Login = () => {
+  const { loginMutate, error, isError } = useAuth();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = useCallback((data) => {
+    loginMutate(data);
+  }, []);
+
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -25,14 +34,18 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm onSubmit={handleSubmit(onSubmit)}>
                     <h1>Login</h1>
                     <p className="text-body-secondary">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput
+                        placeholder="Username"
+                        autoComplete="username"
+                        {...register('username')}
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -42,11 +55,13 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
+                        {...register('password')}
                       />
                     </CInputGroup>
+                    {isError && <p className="text-danger">{error?.response?.data?.message}</p>}
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton color="primary" className="px-4" type="submit">
                           Login
                         </CButton>
                       </CCol>
