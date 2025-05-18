@@ -6,16 +6,12 @@
 
 ```bash
 npm install
-# 또는
-yarn install
 ```
 
 2. 개발 서버 실행
 
 ```bash
 npm start
-# 또는
-yarn start
 ```
 
 ## 주요 기능
