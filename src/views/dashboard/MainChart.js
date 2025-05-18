@@ -1,9 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 
 import { CChartLine } from '@coreui/react-chartjs';
 import { getStyle } from '@coreui/utils';
 
-const MainChart = () => {
+const GRAPH_COLORS = [
+  `rgba(${getStyle('--cui-info-rgb')})`,
+  `rgba(${getStyle('--cui-success-rgb')})`,
+  `rgba(${getStyle('--cui-danger-rgb')})`,
+  `rgba(${getStyle('--cui-warning-rgb')})`,
+];
+
+const MainChart = ({ labels, values, telemetryKeys }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -26,7 +33,35 @@ const MainChart = () => {
     });
   }, [chartRef]);
 
-  const random = () => Math.round(Math.random() * 100);
+  const max = useMemo(() => {
+    if (values == null) return 100;
+    const maxValues = Object.values(values).map((value) => Math.max(...value.map((t) => t.value)));
+    return Math.max(...maxValues);
+  }, [values]);
+
+  const labelsTest = useMemo(() => {
+    if (labels == null) return [];
+    return labels?.map((label) => {
+      const date = new Date(label);
+      return date.getHours() + ':' + date.getMinutes();
+    });
+    return [];
+  }, [labels]);
+
+  const datasets = useMemo(() => {
+    if (values == null) return [];
+    return telemetryKeys?.map((label, index) => {
+      return {
+        label,
+        values: values?.[label] ?? [],
+        borderWidth: 2,
+        borderColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
+        pointHoverBackgroundColor: GRAPH_COLORS[index] ?? getStyle('--cui-info'),
+        data: values?.[label]?.map((t) => t.value) ?? [],
+        fill: true,
+      };
+    });
+  }, [values, telemetryKeys]);
 
   return (
     <>
@@ -34,51 +69,8 @@ const MainChart = () => {
         ref={chartRef}
         style={{ height: '300px', marginTop: '40px' }}
         data={{
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [
-            {
-              label: 'My First dataset',
-              backgroundColor: `rgba(${getStyle('--cui-info-rgb')}, .1)`,
-              borderColor: getStyle('--cui-info'),
-              pointHoverBackgroundColor: getStyle('--cui-info'),
-              borderWidth: 2,
-              data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-              ],
-              fill: true,
-            },
-            {
-              label: 'My Second dataset',
-              backgroundColor: 'transparent',
-              borderColor: getStyle('--cui-success'),
-              pointHoverBackgroundColor: getStyle('--cui-success'),
-              borderWidth: 2,
-              data: [
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-                random(50, 200),
-              ],
-            },
-            {
-              label: 'My Third dataset',
-              backgroundColor: 'transparent',
-              borderColor: getStyle('--cui-danger'),
-              pointHoverBackgroundColor: getStyle('--cui-danger'),
-              borderWidth: 1,
-              borderDash: [8, 5],
-              data: [65, 65, 65, 65, 65, 65, 65],
-            },
-          ],
+          labels: labelsTest ?? [],
+          datasets: datasets ?? [],
         }}
         options={{
           maintainAspectRatio: false,
@@ -105,11 +97,11 @@ const MainChart = () => {
               grid: {
                 color: getStyle('--cui-border-color-translucent'),
               },
-              max: 250,
+              max,
               ticks: {
                 color: getStyle('--cui-body-color'),
-                maxTicksLimit: 5,
-                stepSize: Math.ceil(250 / 5),
+                maxTicksLimit: 4,
+                stepSize: Math.ceil(max / 4),
               },
             },
           },
