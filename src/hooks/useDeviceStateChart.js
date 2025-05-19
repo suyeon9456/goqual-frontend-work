@@ -30,10 +30,7 @@ const useDeviceStateChart = () => {
 
   const maxValue = useMemo(() => getMaxValue(timeseriesValues), [timeseriesValues]);
 
-  const labels = useMemo(
-    () => minuteTimestamps.map((timestamp) => formatTime(new Date(timestamp))),
-    [minuteTimestamps],
-  );
+  const labels = minuteTimestamps.map((timestamp) => formatTime(new Date(timestamp)));
 
   const datasets = useMemo(() => {
     if (!timeseriesValues || !timeseriesKeys) return [];
@@ -43,14 +40,12 @@ const useDeviceStateChart = () => {
     );
   }, [timeseriesValues, timeseriesKeys]);
 
-  const requestTime = useMemo(() => {
-    if (!minuteTimestamps.length) return '';
-
-    const startDate = new Date(minuteTimestamps[0]);
-    const endDate = new Date(minuteTimestamps[minuteTimestamps.length - 1]);
-
-    return formatRequestTime(startDate, endDate);
-  }, [minuteTimestamps]);
+  const requestTime = !minuteTimestamps.length
+    ? ''
+    : formatRequestTime(
+        new Date(minuteTimestamps[0]),
+        new Date(minuteTimestamps[minuteTimestamps.length - 1]),
+      );
 
   return { maxValue, labels, datasets, requestTime };
 };
