@@ -67,7 +67,11 @@ src/
 
 ## 개선하고 싶은 점
 
-1. refresh API가 있다면 refresh token으로 토큰이 만료됐을떄 refresh 할 수 있는 기능 추가
-2. 타입스크립트 적용
-   - 적용하지 않은 이유
-     - 프로젝트 기반이 되는 CoreUI React Admin Template에서 타입스크립트를 사용하고 있지 않아서 맞춰야 겠다고 생각
+1. 토큰 갱신 기능 구현
+
+   - Refresh Token을 활용한 자동 토큰 갱신 도입
+   - 토큰 만료 시 자동 갱신 로직 구현
+
+2. TypeScript 도입
+   - CoreUI React Admin Template의 JavaScript 기반 구조로 인해 현재는 적용하지 않음
+   - 향후 프로젝트 마이그레이션 한다면 TypeScript 적용 계획
